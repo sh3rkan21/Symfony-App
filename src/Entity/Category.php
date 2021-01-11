@@ -30,17 +30,17 @@ class Category
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subcategories")
-     * ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
+     * ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="parent", cascade={"remove"})
      */
     private $subcategories;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="category", cascade={"remove"})
      */
     private $videos;
 
@@ -141,4 +141,3 @@ class Category
         return $this;
     }
 }
-
