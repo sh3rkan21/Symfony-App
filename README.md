@@ -1,5 +1,6 @@
 # Symfony-App
 Symfony App where you can watch videos after you subscribe.
+
 Content:
   - How to install
   - How to run unit/functional tests
