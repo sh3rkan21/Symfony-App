@@ -1,4 +1,4 @@
-# Symfony-App
+# Symfony-App (work in progress)
 Symfony App where you can watch videos after you subscribe.
 
 Content:
