@@ -4,31 +4,12 @@ namespace App\Tests\Controllers;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use App\Entity\Category;
+use App\Tests\Rollback;
 
 class AdminControllerCategoriesTest extends WebTestCase
 {
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->client = static::createClient([], [
-            'PHP_AUTH_USER' => 'sh3rkan21@yahoo.com',
-            'PHP_AUTH_PW' => 'parola111',
-        ]);
-        $this->client->disableReboot();
-
-        $this->entityManager = $this->client->getContainer()->get('doctrine.orm.entity_manager');
-        $this->entityManager->beginTransaction();
-        $this->entityManager->getConnection()->setAutoCommit(false);
-    }
-
-    public function tearDown():void
-    {
-        parent::tearDown();
-        $this->entityManager->rollBack();
-        $this->entityManager->close();
-        $this->entityManager = null;
-    }
+    use Rollback;
 
     public function testTextOnPage()
     {
@@ -76,5 +57,6 @@ class AdminControllerCategoriesTest extends WebTestCase
         $crawler = $this->client->request('GET', '/admin/su/delete-category/1');
         $category = $this->entityManager->getRepository(Category::class)->find(1);
 
-        $this->assertNull($category);    }
+        $this->assertNull($category);    
+    }
 }

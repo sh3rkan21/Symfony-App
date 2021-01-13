@@ -40,4 +40,5 @@ class UserFixtures extends Fixture
             ['Alex', 'Popescu', 'sh3rkan2121@yahoo.com', 'parola111', null, ['ROLE_USER']],
         ];
     }
+
 }
